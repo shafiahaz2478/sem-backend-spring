@@ -67,6 +67,10 @@ public class CandidateController {
         }
 
         try {
+            Path uploadDir = Paths.get("uploads");
+            if (!Files.exists(uploadDir)) {
+                Files.createDirectories(uploadDir); // Create the directory if it doesn't exist
+            }
             Path path = Paths.get(UPLOAD_DIR).resolve(candidate.getImage());
             Resource resource = new UrlResource(path.toUri());
             if (resource.exists() || resource.isReadable()) {
